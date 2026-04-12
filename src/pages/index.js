@@ -26,7 +26,7 @@ import {
 import styled from 'styled-components';
 
 const CONST = {
-  IS_ADMIN_MODE: true,
+  IS_ADMIN_MODE: false,
 };
 
 
