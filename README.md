@@ -1,4 +1,4 @@
-# bbpool2025
+# bbpool2026
 Annual friends baseball pool site.
 
 Note to self: use Google sheets  for the draft/protected list

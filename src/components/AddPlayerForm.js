@@ -1,169 +1,164 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const AddPlayerFormLabel = styled.label`
-  width: 60px;
-  display: inline-block;
-
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
 `;
 
-export const AddPlayerForm = ({savePlayer}) => {
-  const [targetNewPlayer, setTargetNewPlayer] = useState(null);
+const Label = styled.label`
+  width: 70px;
+  font-size: 12px;
+  color: #555;
+  flex-shrink: 0;
+`;
 
-  
-  const onCreatePlayer = () => {
-    const targetPlayer = {...targetNewPlayer};
+const TextInput = styled.input`
+  padding: 3px 6px;
+  font-size: 12px;
+  border: 1px solid #cccccc;
+  width: 200px;
+`;
 
-    // draftStatus: "protected"
-    // index: 27
-    // mlbid: "592518"
-    // name: "Manny Machado"
-    // pos: "3B"
-    // posType: "hitter"
-    // roster: "bashers"
-    // status: "protected"
-    // team: "BAL"
+const Select = styled.select`
+  padding: 3px 6px;
+  font-size: 12px;
+  border: 1px solid #cccccc;
+`;
 
-    targetPlayer.posType = 'hitter';
-    if (targetPlayer.pos === 'SP' || targetPlayer.pos === 'RP') {
-      targetPlayer.posType = 'pitcher';
-    }
+const SaveBtn = styled.button`
+  padding: 4px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid #cccccc;
+  background: #f5f5f5;
+  margin-top: 4px;
+`;
 
+const ValidationMsg = styled.div`
+  font-size: 11px;
+  color: #c62828;
+  margin-top: 4px;
+`;
 
-    if (targetPlayer.roster && targetPlayer.pos && targetPlayer.team && targetPlayer.name) {
-      savePlayer(targetPlayer);
-      setTargetNewPlayer(null);
-  
-    }
-    else {
-      console.log(`|  tried to save player with incomplete info ${JSON.stringify(targetPlayer)}`)
-    }
+const SuccessMsg = styled.div`
+  font-size: 11px;
+  color: #2e7d32;
+  margin-top: 4px;
+`;
 
+const AL_TEAMS = ['ATH', 'BAL', 'BOS', 'CWS', 'CLE', 'DET', 'HOU', 'KC', 'LAA', 'MIN', 'NYY', 'SEA', 'TB', 'TEX', 'TOR'];
+const POSITIONS = ['C', '1B', '2B', '3B', 'SS', 'OF', 'DH', 'SP', 'RP'];
+const ROSTERS = [
+  { value: 'bashers', label: 'Bashers' },
+  { value: 'mashers', label: 'Mashers' },
+  { value: 'rallycaps', label: 'Rally Caps' },
+  { value: 'stallions', label: 'Stallions' },
+];
+
+const toNickname = (name) =>
+  name.trim().toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+
+const emptyPlayer = () => ({
+  name: '', roster: '', pos: '', team: '', status: 'regular', playerId: 0, newsLink: '',
+});
+
+export const AddPlayerForm = ({ savePlayer }) => {
+  const [player, setPlayer] = useState(emptyPlayer());
+  const [validationMsg, setValidationMsg] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
+
+  const set = (field, value) => {
+    setValidationMsg('');
+    setSuccessMsg('');
+    setPlayer(prev => ({ ...prev, [field]: value }));
   };
 
-  const onUpdateNewPlayerProperty = (event, property) => {
-    const targetPlayer = {...targetNewPlayer};
-    targetPlayer[property] = event.target.value;
+  const onSave = () => {
+    const { name, roster, pos, team } = player;
+    if (!name.trim()) return setValidationMsg('Name is required.');
+    if (!roster) return setValidationMsg('Roster is required.');
+    if (!pos) return setValidationMsg('Position is required.');
+    if (!team) return setValidationMsg('Team is required.');
 
-    setTargetNewPlayer(targetPlayer);
+    const toSave = {
+      ...player,
+      name: name.trim(),
+      nickname: toNickname(name),
+      posType: (pos === 'SP' || pos === 'RP') ? 'pitcher' : 'hitter',
+      playerId: Number(player.playerId) || 0,
+      total: 0,
+    };
+
+    savePlayer(toSave);
+    setSuccessMsg(`${toSave.name} added to ${roster}.`);
+    setPlayer(emptyPlayer());
   };
-
 
   return (
-    <div>
-      <div>
-        <AddPlayerFormLabel>
-          Roster:
-          </AddPlayerFormLabel>
-          <select
-            onChange={(event) => onUpdateNewPlayerProperty(event, 'roster')}
-            className="select-roster pick-property-edit"
-            value={(targetNewPlayer && targetNewPlayer.roster) ? targetNewPlayer.roster : ''}
-            data-property="pos"
-          >
-            <option value>-</option>
-            <option value="bashers">Bashers</option>
-            <option value="mashers">Mashers</option>
-            <option value="rallycaps">Rally Caps</option>
-            <option value="stallions">Stallions</option>
-          </select>
-        
-      </div>      
-      <div>
-        <AddPlayerFormLabel>
-          Name:
-          </AddPlayerFormLabel>
-          <input
-            value={(targetNewPlayer && targetNewPlayer.name) ? targetNewPlayer.name : ''}
-            onChange={(event) => onUpdateNewPlayerProperty(event, 'name')}
-          />
-        
-      </div>
-      <div>
-        <AddPlayerFormLabel>
-          Pos:
-          </AddPlayerFormLabel>
-          <select
-            onChange={(event) => onUpdateNewPlayerProperty(event, 'pos')}
-            className="select-pos pick-property-edit"
-            value={(targetNewPlayer && targetNewPlayer.pos) ? targetNewPlayer.pos : ''}
-            data-property="pos"
-          >
-            <option value>-</option>
-            <option value="C">C</option>
-            <option value="1B">1B</option>
-            <option value="2B">2B</option>
-            <option value="3B">3B</option>
-            <option value="SS">SS</option>
-            <option value="LF">LF</option>
-            <option value="CF">CF</option>
-            <option value="RF">RF</option>
-            <option value="DH">DH</option>
-            <option value="SP">SP</option>
-            <option value="RP">RP</option>
-          </select>
+    <div style={{ border: '1px solid #ee9999', padding: '8px', fontSize: 12 }}>
+      <div style={{ fontWeight: 600, marginBottom: 8 }}>Add Player</div>
 
-      </div>
-      <div>
-        <AddPlayerFormLabel>
-          Team:
-          </AddPlayerFormLabel>
-          <select
-            className="select-team pick-property-edit"
-            onChange={(event) => onUpdateNewPlayerProperty(event, 'team')}
-            value={(targetNewPlayer && targetNewPlayer.team) ? targetNewPlayer.team : ''}
-            data-property="team"
-          >
-            <option value>--</option>
-            <option value="BAL">BAL</option>
-            <option value="BOS">BOS</option>
-            <option value="CHA">CHA</option>
-            <option value="CLE">CLE</option>
-            <option value="DET">DET</option>
-            <option value="HOU">HOU</option>
-            <option value="KC">KC</option>
-            <option value="LAA">LAA</option>
-            <option value="MIN">MIN</option>
-            <option value="NYY">NYY</option>
-            <option value="OAK">OAK</option>
-            <option value="SEA">SEA</option>
-            <option value="TB">TB</option>
-            <option value="TEX">TEX</option>
-            <option value="TOR">TOR</option>
-          </select>
+      <Row>
+        <Label>Roster:</Label>
+        <Select value={player.roster} onChange={e => set('roster', e.target.value)}>
+          <option value="">—</option>
+          {ROSTERS.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
+        </Select>
+      </Row>
 
-      </div>
-      <div>
-        <AddPlayerFormLabel>
-          Status:
-          </AddPlayerFormLabel>
-          <select
-            value={(targetNewPlayer && targetNewPlayer.status) ? targetNewPlayer.status : 'regular'}
-            onChange={(event) => onUpdateNewPlayerProperty(event, 'status')}
-            data-property="status-input"
-          >
-            <option value="regular">regular</option>
-            <option value="prospect">prospect</option>
-          </select>
+      <Row>
+        <Label>Name:</Label>
+        <TextInput
+          value={player.name}
+          onChange={e => set('name', e.target.value)}
+          placeholder="Player name"
+        />
+      </Row>
 
-      </div>
-      <div>
-        <AddPlayerFormLabel>
-          News:
-          </AddPlayerFormLabel>
-          <input
-            value={(targetNewPlayer && targetNewPlayer.newsLink) ? targetNewPlayer.newsLink : ''}
-            onChange={(event) => onUpdateNewPlayerProperty(event, 'newsLink')}
-          />
-        
-      </div>
-      <div className="layout">
-        <button
-          onClick={onCreatePlayer}
-        >
-          save
-        </button>
-      </div>
-    </div>    
-  )
-} 
+      <Row>
+        <Label>Pos:</Label>
+        <Select value={player.pos} onChange={e => set('pos', e.target.value)}>
+          <option value="">—</option>
+          {POSITIONS.map(p => <option key={p} value={p}>{p}</option>)}
+        </Select>
+      </Row>
+
+      <Row>
+        <Label>Team:</Label>
+        <Select value={player.team} onChange={e => set('team', e.target.value)}>
+          <option value="">—</option>
+          {AL_TEAMS.map(t => <option key={t} value={t}>{t}</option>)}
+        </Select>
+      </Row>
+
+      <Row>
+        <Label>Status:</Label>
+        <Select value={player.status} onChange={e => set('status', e.target.value)}>
+          <option value="regular">regular</option>
+          <option value="prospect">prospect</option>
+          <option value="protected">protected</option>
+        </Select>
+      </Row>
+
+      <Row>
+        <Label>MLB ID:</Label>
+        <TextInput
+          value={player.playerId || ''}
+          onChange={e => set('playerId', e.target.value)}
+          placeholder="0 if unknown"
+          style={{ width: 80 }}
+        />
+        <span style={{ fontSize: 10, color: '#888', marginLeft: 6 }}>
+          (map later via Player Mapper if unknown)
+        </span>
+      </Row>
+
+      {validationMsg && <ValidationMsg>{validationMsg}</ValidationMsg>}
+      {successMsg && <SuccessMsg>{successMsg}</SuccessMsg>}
+
+      <SaveBtn onClick={onSave}>Add Player</SaveBtn>
+    </div>
+  );
+};

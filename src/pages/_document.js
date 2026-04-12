@@ -7,7 +7,7 @@ class MyDocument extends Document {
   render() { 
     return (
       <Html>
-        <title>Baseball Pool 2025 ::</title>
+        <title>Baseball Pool 2026 ::</title>
         <Head />
         <body>
           <Main />
