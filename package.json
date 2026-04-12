@@ -1,10 +1,10 @@
 {
-  "name": "bbpool2025",
+  "name": "bbpool2026",
   "version": "0.0.1",
-  "description": "application for baseball pool 2024",
+  "description": "application for baseball pool 2026",
   "main": "index.js",
   "scripts": {
-    "dev": "export NODE_OPTIONS=--openssl-legacy-provider && next dev -p 2025",
+    "dev": "export NODE_OPTIONS=--openssl-legacy-provider && next dev -p 2026",
     "build": "export NODE_OPTIONS=--openssl-legacy-provider && next build",
     "start": "export NODE_OPTIONS=--openssl-legacy-provider && next start",
     "test": "export NODE_OPTIONS=--openssl-legacy-provider && test"
