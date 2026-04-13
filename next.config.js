@@ -1,7 +1,15 @@
 module.exports = {
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    // Fixes npm packages that depend on `fs`, `net`, `tls`, and `dns` modules.
+  // 1. ADD THIS: Ensures /about becomes /about/index.html
+  // Fixes routing 500s/404s on static hosts
+  trailingSlash: true,
 
+  // 2. ADD THIS: Disables server-side image processing
+  images: {
+    unoptimized: true,
+  },
+
+  webpack: (config, { isServer }) => {
+    // Keep your existing fallback logic
     if (!isServer) {
       config.resolve.fallback = {
         ...(config.resolve.fallback || {}),
@@ -19,7 +27,6 @@ module.exports = {
       };
     }
 
-    // Important: return the modified config
     return config;
   },
 };
