@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "export NODE_OPTIONS=--openssl-legacy-provider && next dev -p 2026",
-    "build": "export NODE_OPTIONS=--openssl-legacy-provider && next build",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && next build && next export",
     "start": "export NODE_OPTIONS=--openssl-legacy-provider && next start",
     "test": "export NODE_OPTIONS=--openssl-legacy-provider && test"
   },
