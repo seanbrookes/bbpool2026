@@ -4,10 +4,10 @@
   "description": "application for baseball pool 2026",
   "main": "index.js",
   "scripts": {
-    "dev": "export NODE_OPTIONS=--openssl-legacy-provider && next dev -p 2026",
-    "build": "export NODE_OPTIONS=--openssl-legacy-provider && next build && next export",
-    "start": "export NODE_OPTIONS=--openssl-legacy-provider && next start",
-    "test": "export NODE_OPTIONS=--openssl-legacy-provider && test"
+    "dev": "next dev -p 2026",
+    "build": "next build && next export",
+    "start": "next start",
+    "test": "test"
   },
   "engines": {
     "npm": ">=8.0.0",
