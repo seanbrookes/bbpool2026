@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:statsapi.mlb.com)"
+      "WebFetch(domain:statsapi.mlb.com)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(node server.js)",
+      "Bash(curl -s http://localhost:3001/api/rosters)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('Teams:', list\\(d.keys\\(\\)\\)\\)\")"
     ]
   }
 }
