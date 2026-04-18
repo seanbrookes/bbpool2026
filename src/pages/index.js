@@ -793,7 +793,7 @@ return (<Layout>
         <a href="https://www.mlb.com/probable-pitchers" target="_blank">Probable pitchers</a>
       </div>
       <div style={{margin: '6px 0 0 0'}}>
-        <a href="https://www.nbcsportsedge.com/baseball/mlb/player-news?team=1" target="_blank">Player news</a>
+        <a href="https://www.nbcsports.com/fantasy/baseball/player-news?f0=All+News&f1=Positions&f2=00000188-c976-d1ec-a9ac-d97f16610000" target="_blank">Player news</a>
       </div>
       <div style={{margin: '6px 0 0 0'}}>
         <a href="https://sports.yahoo.com/mlb/scoreboard/" target="_blank">Scores</a>
