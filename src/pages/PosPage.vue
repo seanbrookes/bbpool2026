@@ -128,8 +128,8 @@ const players = computed(() => {
   return list.slice().sort((a, b) => {
     const av = a[col] ?? (typeof a[col] === 'number' ? 0 : '')
     const bv = b[col] ?? (typeof b[col] === 'number' ? 0 : '')
-    if (av < bv) return dir
-    if (av > bv) return -dir
+    if (av < bv) return -dir
+    if (av > bv) return dir
     return 0
   })
 })
