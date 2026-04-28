@@ -34,6 +34,7 @@
         <a href="https://www.mlb.com/probable-pitchers" target="_blank">Probable</a>
         <a href="https://sports.yahoo.com/mlb/scoreboard/" target="_blank">Scores</a>
         <a href="https://www.nbcsports.com/fantasy/baseball/player-news" target="_blank">News</a>
+        <router-link v-if="isDev" to="/admin" class="admin-link">Admin</router-link>
       </div>
     </div>
 
@@ -46,6 +47,7 @@ import { useRoute } from 'vue-router'
 import { store, refreshStats } from '../store/index.js'
 
 const route = useRoute()
+const isDev = import.meta.env.DEV
 const positions = ['All', 'C', '1B', '2B', '3B', 'SS', 'OF', 'SP', 'RP']
 const currentPos = computed(() => route.params.pos || null)
 
