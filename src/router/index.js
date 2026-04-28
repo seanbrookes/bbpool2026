@@ -7,6 +7,10 @@ const routes = [
   { path: '/pos/:pos', component: PosPage  },
 ]
 
+if (import.meta.env.DEV) {
+  routes.push({ path: '/admin', component: () => import('../pages/AdminPage.vue') })
+}
+
 export default createRouter({
   history: createWebHistory(),
   routes,
