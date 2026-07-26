@@ -22,31 +22,31 @@ hitters: runs, hits, HR's, rbi, sb
 starters: wins, losses, and k's
 closers: wins, saves, k's
 
-Hosted using Vercel app hosting - pretty slick
+Hosted as a static site on **Cloudflare Pages**. See [DEPLOY.md](DEPLOY.md) for the
+deployment process.
 
-https://bbpool2025.vercel.app/
 ![pool screenshot](https://user-images.githubusercontent.com/1751524/124396823-ce6ccb00-dcc0-11eb-81cd-e390f6bb16f0.png)
 
 
 ## Developing locally
-This is a Next js application so has a built in server / api  
-The api uses the same host and port with the path `/api/...`  
-Note this is only for local development as there is no api in production as there is no persistence.  
+This is a **Vite + Vue** application. `npm run dev` runs Vite alongside a small
+Express server (`server.js`) that provides a local-only `/api/...` for editing
+rosters. Vite proxies `/api` to that server.
+Note this api is only for local development — there is no api in production and no
+persistence (the built site fetches stats directly from the MLB api).
 
 ```
 $npm run dev
 ```
-should come up on port 2025
+should come up on port 2026
 
-### isHiddenOn
-is the switch to turn on local editing controls in index.js
-```
-  const [isHiddenOn, setIsHiddenOn] = useState(true);
-```
+### Local editing controls
+The `/admin` route exposes the roster editing controls. It is only registered when
+running in dev (`import.meta.env.DEV`), so it is not present in the production
+build. Saving there writes back to `src/data/rosters2026.json` (via the Express
+api) and backs up the previous file to `/bak`.
 
-https://github.com/seanbrookes/bbpool2025
-
-https://vercel.com/seanbrookes/bbpool2025 
+https://github.com/seanbrookes/bbpool2026
 
 ```
 hiiter total calc:

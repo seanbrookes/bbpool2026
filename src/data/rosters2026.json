@@ -97,17 +97,6 @@
         "status": "prospect"
       },
       {
-        "name": "Yainer Diaz",
-        "roster": "bashers",
-        "pos": "OF",
-        "team": "HOU",
-        "posType": "hitter",
-        "total": 0,
-        "nickname": "yainer_diaz",
-        "playerId": 673237,
-        "newsLink": ""
-      },
-      {
         "name": "Carter Jensen",
         "roster": "bashers",
         "pos": "C",
@@ -359,6 +348,28 @@
         "total": 52.05,
         "nickname": "ryan_helsley",
         "playerId": 664854,
+        "newsLink": ""
+      },
+      {
+        "name": "Miguel Vargas",
+        "roster": "bashers",
+        "pos": "3B",
+        "team": "CWS",
+        "posType": "hitter",
+        "total": 0,
+        "nickname": "miguel_vargas",
+        "playerId": 678246,
+        "newsLink": ""
+      },
+      {
+        "name": "Coby Mayo",
+        "roster": "bashers",
+        "pos": "OF",
+        "team": "BAL",
+        "posType": "hitter",
+        "total": 0,
+        "nickname": "coby_mayo",
+        "playerId": 691723,
         "newsLink": ""
       }
     ],
@@ -727,6 +738,28 @@
         "playerId": 800048,
         "newsLink": "",
         "status": "protected"
+      },
+      {
+        "name": "Jacob Latz",
+        "roster": "cowboys",
+        "pos": "RP",
+        "team": "TEX",
+        "posType": "pitcher",
+        "total": 0,
+        "nickname": "jacob_latz",
+        "playerId": 656641,
+        "newsLink": ""
+      },
+      {
+        "name": "Peter Lambert",
+        "roster": "cowboys",
+        "pos": "SP",
+        "team": "HOU",
+        "posType": "pitcher",
+        "total": 0,
+        "nickname": "peter_lambert",
+        "playerId": 663567,
+        "newsLink": ""
       }
     ],
     "slug": "cowboys",
@@ -982,18 +1015,6 @@
         "newsLink": ""
       },
       {
-        "name": "Luis Gil",
-        "roster": "rallycaps",
-        "pos": "SP",
-        "team": "NYY",
-        "posType": "pitcher",
-        "total": -0.5,
-        "nickname": "luis_gil",
-        "playerId": 661563,
-        "newsLink": "",
-        "status": "protected"
-      },
-      {
         "name": "Spencer Arrighetti",
         "roster": "rallycaps",
         "pos": "SP",
@@ -1085,14 +1106,25 @@
         "status": "protected"
       },
       {
-        "name": "Carlos Estevez",
+        "name": "Louis Varland",
         "roster": "rallycaps",
         "pos": "RP",
-        "team": "KC",
+        "team": "TOR",
         "posType": "pitcher",
-        "total": 0.05,
-        "nickname": "carlos_estevez",
-        "playerId": 608032,
+        "total": 0,
+        "nickname": "louis_varland",
+        "playerId": 686973,
+        "newsLink": ""
+      },
+      {
+        "name": "Nathan Eovaldi",
+        "roster": "rallycaps",
+        "pos": "SP",
+        "team": "TEX",
+        "posType": "pitcher",
+        "total": 0,
+        "nickname": "nathan_eovaldi",
+        "playerId": 543135,
         "newsLink": ""
       }
     ],
@@ -1174,17 +1206,6 @@
         "total": 0,
         "nickname": "jac_caglianone",
         "playerId": 695506,
-        "newsLink": ""
-      },
-      {
-        "name": "Matt Wallner",
-        "roster": "stallions",
-        "pos": "OF",
-        "team": "MIN",
-        "posType": "hitter",
-        "total": 0,
-        "nickname": "matt_wallner",
-        "playerId": 670242,
         "newsLink": ""
       },
       {
@@ -1461,6 +1482,28 @@
         "playerId": 703601,
         "newsLink": "",
         "status": "prospect"
+      },
+      {
+        "name": "Sonny Gray",
+        "roster": "stallions",
+        "pos": "SP",
+        "team": "BOS",
+        "posType": "pitcher",
+        "total": 0,
+        "nickname": "sonny_gray",
+        "playerId": 543243,
+        "newsLink": ""
+      },
+      {
+        "name": "Kody Clemens",
+        "roster": "stallions",
+        "pos": "2B",
+        "team": "MIN",
+        "posType": "hitter",
+        "total": 0,
+        "nickname": "kody_clemens",
+        "playerId": 665019,
+        "newsLink": ""
       }
     ],
     "slug": "stallions",

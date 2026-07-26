@@ -83,6 +83,12 @@ typings/
 dist
 bak/*
 
+# Vite build output (deployed manually to Cloudflare Pages; not versioned)
+out
+
+# Local-only runbooks / notes (operational specifics — not for the public repo)
+*.local.md
+
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and *not* Next.js
